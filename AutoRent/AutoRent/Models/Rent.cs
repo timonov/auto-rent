@@ -23,9 +23,4 @@ namespace AutoRent.Models
         public virtual Customer customer { get; set; }
         public virtual CustomerFavour customerFavour { get; set; }
     }
-
-    public class RentDbContext : DbContext
-    {
-        public DbSet<Rent> rents { get; set; }
-    }
 }

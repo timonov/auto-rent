@@ -36,9 +36,4 @@ namespace AutoRent.Models
         [Display(Name="Discount")]
         public decimal discountPercentage { get; set; }
     }
-
-    public class CustomerDbContext : DbContext
-    {
-        public DbSet<Customer> customers { get; set; }
-    }
 }

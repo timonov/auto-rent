@@ -26,9 +26,4 @@ namespace AutoRent.Models
         [Required]
         public decimal rentPrice { get; set; }
     }
-
-    public class CarsDbContext : DbContext
-    {
-        public DbSet<Car> cars;
-    }
 }

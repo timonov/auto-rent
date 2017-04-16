@@ -27,9 +27,4 @@ namespace AutoRent.Models
         [Required]
         public decimal amount { get; set; }
     }
-
-    public class PenaltyDBContext : DbContext
-    {
-        public DbSet<Penalty> penalties { get; set; }
-    }
 }

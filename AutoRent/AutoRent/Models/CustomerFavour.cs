@@ -24,9 +24,4 @@ namespace AutoRent.Models
 
         public virtual Customer customer { get; set; }
     }
-
-    public class CustomerFavourDbContext : DbContext
-    {
-        public DbSet<CustomerFavour> customerFavours { get; set; }
-    }
 }

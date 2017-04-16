@@ -20,12 +20,7 @@ namespace AutoRent.Models
         [Required]
         public decimal amount { get; set; }
 
-        public virtual Rent Rent { get; set; }
-        public virtual Penalty Penalty { get; set; }
-    }
-
-    public class PaymentDbContext : DbContext
-    {
-        DbSet<Payment> payments { get; set; }
+        public virtual Rent rent { get; set; }
+        public virtual Penalty penalty { get; set; }
     }
 }
