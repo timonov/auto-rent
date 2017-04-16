@@ -12,7 +12,7 @@ namespace AutoRent.Models
         [Key]
         public int ID { get; set; }
 
-        public int customerId { get; set; }
+        public int customerID { get; set; }
 
         public DateTime rentStartDate { get; set; }
 

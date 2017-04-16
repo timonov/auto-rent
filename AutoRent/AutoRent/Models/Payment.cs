@@ -19,6 +19,9 @@ namespace AutoRent.Models
         [DataType(DataType.Currency)]
         [Required]
         public decimal amount { get; set; }
+
+        public virtual Rent rent;
+        public virtual Penalty? penalty;
     }
 
     public class PaymentDbContext : DbContext
