@@ -14,14 +14,14 @@ namespace AutoRent.Models
         [ForeignKey("Rent")]
         public int rentID { get; set; }
 
-        public int penaltyID { get; set; }
+        public int? penaltyID { get; set; }
 
         [DataType(DataType.Currency)]
         [Required]
         public decimal amount { get; set; }
 
-        public virtual Rent rent;
-        public virtual Penalty? penalty;
+        public virtual Rent Rent { get; set; }
+        public virtual Penalty Penalty { get; set; }
     }
 
     public class PaymentDbContext : DbContext
