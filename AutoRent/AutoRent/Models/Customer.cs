@@ -10,7 +10,7 @@ namespace AutoRent.Models
     public class Customer
     {
         [Key]
-        public int id { get; set; }
+        public int ID { get; set; }
 
         [Display(Name="First name")]
         [Required]
