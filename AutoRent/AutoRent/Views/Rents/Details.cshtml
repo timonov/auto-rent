@@ -1,0 +1,57 @@
+﻿@model AutoRent.Models.Rent
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Rent transaction details</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.car.brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.car.brand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customer.firstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customer.firstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.customerFavour.favouriteBrand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.customerFavour.favouriteBrand)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfService)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfService)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dateOfReturn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dateOfReturn)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

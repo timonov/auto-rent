@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AutoRent.Models.Rent>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Transactions list</h2>
+
+<p>
+    @Html.ActionLink("Add new transaction", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.car.brand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customer.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.customerFavour.favouriteBrand)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateOfService)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dateOfReturn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.car.brand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customer.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.customerFavour.favouriteBrand)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateOfService)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dateOfReturn)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

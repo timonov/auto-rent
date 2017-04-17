@@ -1,0 +1,45 @@
+﻿@model IEnumerable<AutoRent.Models.Payment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Penalty.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rent.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.amount)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Penalty.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rent.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.RentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.RentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.RentID })
+        </td>
+    </tr>
+}
+
+</table>
