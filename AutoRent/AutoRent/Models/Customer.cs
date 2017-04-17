@@ -33,7 +33,7 @@ namespace AutoRent.Models
         public string phoneNumber { get; set; }
 
         [Required]
-        [Display(Name="Discount")]
+        [Display(Name="Percentage of Discount")]
         public decimal discountPercentage { get; set; }
     }
 }

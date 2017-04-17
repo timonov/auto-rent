@@ -16,7 +16,7 @@ namespace AutoRent.Models
         [Required]
         public string brand { get; set; }
 
-        [Display(Name="Value")]
+        [Display(Name="Total Value")]
         [DataType(DataType.Currency)]
         [Required]
         public decimal totalValue { get; set; }
@@ -25,5 +25,9 @@ namespace AutoRent.Models
         [DataType(DataType.Currency)]
         [Required]
         public decimal rentPrice { get; set; }
+
+        [Display(Name="Is taken?")]
+        [Required]
+        public bool isTaken { get; set; }
     }
 }

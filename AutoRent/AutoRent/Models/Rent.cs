@@ -25,15 +25,12 @@ namespace AutoRent.Models
         [Required]
         public DateTime dateOfReturn { get; set; }
 
-        [Display(Name="Selected Car")]
         [ForeignKey("CarID")]
         public virtual Car car { get; set; }
 
-        [Display(Name="Customer")]
         [ForeignKey("CustomerID")]
         public virtual Customer customer { get; set; }
 
-        [Display(Name="Customer Query")]
         [ForeignKey("CustomerFavourID")]
         public virtual CustomerFavour customerFavour { get; set; }
     }
