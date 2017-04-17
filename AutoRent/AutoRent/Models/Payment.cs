@@ -12,15 +12,16 @@ namespace AutoRent.Models
     {
         [Key]
         [ForeignKey("Rent")]
-        public int rentID { get; set; }
+        public int RentID { get; set; }
 
-        public int? penaltyID { get; set; }
+        [ForeignKey("Penalty")]
+        public int? PenaltyID { get; set; }
 
         [DataType(DataType.Currency)]
         [Required]
         public decimal amount { get; set; }
 
-        public virtual Rent rent { get; set; }
-        public virtual Penalty penalty { get; set; }
+        public virtual Rent Rent { get; set; }
+        public virtual Penalty Penalty { get; set; }
     }
 }

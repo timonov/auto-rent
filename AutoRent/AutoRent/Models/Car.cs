@@ -12,16 +12,16 @@ namespace AutoRent.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name = "Brand name")]
+        [Display(Name="Brand name")]
         [Required]
         public string brand { get; set; }
 
-        [Display(Name = "Value")]
+        [Display(Name="Value")]
         [DataType(DataType.Currency)]
         [Required]
         public decimal totalValue { get; set; }
 
-        [Display(Name = "Rent price")]
+        [Display(Name="Rent price")]
         [DataType(DataType.Currency)]
         [Required]
         public decimal rentPrice { get; set; }

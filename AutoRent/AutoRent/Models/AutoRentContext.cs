@@ -8,16 +8,15 @@ namespace AutoRent.Models
 {
     public class AutoRentContext : DbContext
     {
-        public DbSet<Car> cars;
-        public DbSet<Customer> customers { get; set; }
-        public DbSet<CustomerFavour> customerFavours { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<CustomerFavour> CustomerFavours { get; set; }
 
-        public DbSet<Rent> rents { get; set; }
-        public DbSet<Penalty> penalties { get; set; }
-        public DbSet<Payment> payments { get; set; }
+        public DbSet<Rent> Rents { get; set; }
+        public DbSet<Penalty> Penalties { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public AutoRentContext() : base("AutoRentContext") {}
-
 
     }
 }
