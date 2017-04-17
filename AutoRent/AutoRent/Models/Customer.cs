@@ -12,23 +12,23 @@ namespace AutoRent.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name="First name")]
+        [Display(Name="First Name")]
         [Required]
         public string firstName { get; set; }
 
-        [Display(Name="Last name")]
+        [Display(Name="Last Name")]
         [Required]
         public string lastName { get; set; }
 
-        [Display(Name="Middle name")]
+        [Display(Name="Middle Name")]
         public string middleName { get; set; }
 
         [Required]
-        [Display(Name="Passport details")]
+        [Display(Name="Passport Details")]
         public string passportDetails { get; set; }
 
         [Required]
-        [Display(Name="Phone number")]
+        [Display(Name="Phone Number")]
         [DataType(DataType.PhoneNumber)]
         public string phoneNumber { get; set; }
 

@@ -15,15 +15,24 @@ namespace AutoRent.Models
 
         public int? CustomerID { get; set; }
 
+        [Display(Name="Rent Start Date")]
+        [Required]
         public DateTime rentStartDate { get; set; }
 
-        public uint rentDays { get; set; }
+        [Display(Name="Days To Rent")]
+        [Required]
+        public int rentDays { get; set; }
+
+        [Display(Name="Favourite Brand")]
         public string favouriteBrand { get; set; }
 
+        [Display(Name="Max Rent Price Per Day")]
         [DataType(DataType.Currency)]
         public decimal maxRentPricePerDay { get; set; }
 
+        [Display(Name="Customer")]
         [ForeignKey("CustomerID")]
+        [Required]
         public virtual Customer customer { get; set; }
     }
 }

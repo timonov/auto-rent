@@ -22,7 +22,7 @@ namespace AutoRent.Models
         [Required]
         public PenaltyType type { get; set; }
 
-        [Display(Name = "Penalty amount")]
+        [Display(Name = "Penalty Amount")]
         [DataType(DataType.Currency)]
         [Required]
         public decimal amount { get; set; }

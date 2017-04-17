@@ -11,7 +11,6 @@ namespace AutoRent.Models
         public DbSet<Car> Cars { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerFavour> CustomerFavours { get; set; }
-
         public DbSet<Rent> Rents { get; set; }
         public DbSet<Penalty> Penalties { get; set; }
         public DbSet<Payment> Payments { get; set; }
