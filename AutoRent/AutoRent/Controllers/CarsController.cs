@@ -34,6 +34,37 @@ namespace AutoRent.Controllers
             return View(cars.ToList());
         }
 
+        public ActionResult MatchCar(int? customerQueryId)
+        {
+            if (customerQueryId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.selectedQueryId = customerQueryId;
+
+            CustomerQuery customerQuery = db.CustomerFavours.Find(customerQueryId);
+
+            var matchedCars = db.Cars.Where(car => !car.isTaken).
+                Where(car => car.rentPrice <= customerQuery.maxRentPricePerDay);
+
+            if (customerQuery.favouriteBrand != null)
+            {
+                matchedCars = matchedCars.Where(car => car.brand == customerQuery.favouriteBrand);
+            }
+
+            if (matchedCars.Any())
+            {
+                return View(matchedCars.ToList());
+            }
+            return View();
+        }
+
+        public ActionResult AddCar(int? id, int? customerQueryId)
+        {
+            return RedirectToAction("Index", "Customers");
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)

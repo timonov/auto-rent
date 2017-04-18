@@ -38,7 +38,7 @@
 
 @foreach (var item in Model.customers) {
     string selectedRow = "";
-    if (item.ID == ViewBag.selectedCustomerId)
+    if (item.ID == ViewBag.selectedCustomerID)
     {
         selectedRow = "success";
     }
@@ -91,18 +91,20 @@
         {
             <tr>
                 <td>
-                    @item.rentStartDate
+                    @Html.DisplayFor(query => item.rentStartDate)
                 </td>
                 <td>
-                    @item.rentDays
+                    @Html.DisplayFor(query => item.rentDays)
                 </td>
                 <td>
-                    @item.favouriteBrand
+                    @Html.DisplayFor(query => item.favouriteBrand)
                 </td>
                 <td>
-                    @item.maxRentPricePerDay
+                    @Html.DisplayFor(query => item.maxRentPricePerDay)
                 </td>
                 <td>
+                    @Html.ActionLink("Enroll Deal", "SelectCarToRent",
+                    new { queryId = item.ID })
                 </td>
             </tr>
         }

@@ -18,11 +18,11 @@ namespace AutoRent.Controllers
         public ActionResult Index(int? id)
         {
             var customerViewModel = new CustomerData();
-            customerViewModel.customers = db.Customers.Include(i => i.customerQueries);
+            customerViewModel.customers = db.Customers.Include(customer => customer.customerQueries);
 
             if (id != null)
             {
-                ViewBag.selectedCustomerId = id;
+                ViewBag.selectedCustomerID = id;
                 customerViewModel.queries =
                     db.CustomerFavours.Where(query => query.CustomerID == id);
             }
@@ -38,6 +38,16 @@ namespace AutoRent.Controllers
             }
 
             return RedirectToAction("Create", "CustomerQueries", new { customerId = id });
+        }
+
+        public ActionResult SelectCarToRent(int? queryId)
+        {
+            if (queryId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return RedirectToAction("MatchCar", "Cars", new { customerQueryId = queryId });
         }
 
 

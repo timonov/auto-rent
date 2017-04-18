@@ -274,6 +274,7 @@
     <Content Include="Views\RentDeals\Details.cshtml" />
     <Content Include="Views\RentDeals\Edit.cshtml" />
     <Content Include="Views\RentDeals\Index.cshtml" />
+    <Content Include="Views\Cars\MatchCar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

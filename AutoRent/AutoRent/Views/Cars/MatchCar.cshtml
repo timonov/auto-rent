@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AutoRent.Models.Car>
+
+@{
+    ViewBag.Title = "Match Car";
+}
+
+
+@if (Model != null)
+{
+    <h2>Select Car For Rent</h2>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.totalValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.rentPrice)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.totalValue)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.rentPrice)
+                </td>
+                <td>
+                    @Html.ActionLink("Select car", "AddCar", new { id = item.ID, customerQueryId = ViewBag.selectedQueryId })
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h2>No matching cars found</h2>
+}
+<div>
+
+    @Html.ActionLink("Back to Customers List", "Index", "Customers")
+</div>
+

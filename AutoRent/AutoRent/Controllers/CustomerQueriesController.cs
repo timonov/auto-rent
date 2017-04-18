@@ -55,7 +55,7 @@ namespace AutoRent.Controllers
             {
                 db.CustomerFavours.Add(customerQuery);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Customers");
+                return RedirectToAction("Index", "Customers", new { id = customerQuery.CustomerID });
             }
 
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerQuery.CustomerID);
@@ -79,9 +79,7 @@ namespace AutoRent.Controllers
             return View(customerQuery);
         }
 
-        // POST: CustomerQueries/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,CustomerID,rentStartDate,rentDays,favouriteBrand,maxRentPricePerDay")] CustomerQuery customerQuery)
@@ -96,7 +94,6 @@ namespace AutoRent.Controllers
             return View(customerQuery);
         }
 
-        // GET: CustomerQueries/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -111,7 +108,6 @@ namespace AutoRent.Controllers
             return View(customerQuery);
         }
 
-        // POST: CustomerQueries/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
