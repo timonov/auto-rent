@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoRent.Models;
+using AutoRent.ViewModels;
 
 namespace AutoRent.Controllers
 {
@@ -14,10 +15,19 @@ namespace AutoRent.Controllers
     {
         private AutoRentContext db = new AutoRentContext();
 
-
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
-            return View(db.Customers.ToList());
+            var customerViewModel = new CustomerData();
+            customerViewModel.customers = db.Customers.Include(i => i.customerQueries);
+
+            if (id != null)
+            {
+                ViewBag.selectedCustomerId = id;
+                customerViewModel.queries =
+                    db.CustomerFavours.Where(query => query.CustomerID == id);
+            }
+
+            return View(customerViewModel);
         }
 
         public ActionResult AddQuery(int? id)
@@ -125,6 +135,7 @@ namespace AutoRent.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Customer customer = db.Customers.Find(id);
+            db.CustomerFavours.RemoveRange(customer.customerQueries);
             db.Customers.Remove(customer);
             db.SaveChanges();
 

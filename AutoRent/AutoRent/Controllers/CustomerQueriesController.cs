@@ -20,7 +20,6 @@ namespace AutoRent.Controllers
             return View(customerFavours.ToList());
         }
 
-        // GET: CustomerQueries/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,7 +40,9 @@ namespace AutoRent.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerId);
+
             return View();
         }
 
@@ -54,14 +55,15 @@ namespace AutoRent.Controllers
             {
                 db.CustomerFavours.Add(customerQuery);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Customers");
             }
 
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerQuery.CustomerID);
+
             return View(customerQuery);
         }
 
-        // GET: CustomerQueries/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)

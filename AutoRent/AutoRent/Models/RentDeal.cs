@@ -8,7 +8,7 @@ using System.Web;
 
 namespace AutoRent.Models
 {
-    public class Rent
+    public class RentDeal
     {
         [Key]
         public int ID { get; set; }
@@ -18,10 +18,14 @@ namespace AutoRent.Models
         public int? CustomerQueryID { get; set; }
 
         [Display(Name="Service Date")]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         [Required]
         public DateTime dateOfService { get; set; }
 
         [Display(Name="Date To Return")]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         [Required]
         public DateTime dateOfReturn { get; set; }
 

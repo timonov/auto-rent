@@ -1,4 +1,5 @@
-﻿@model IEnumerable<AutoRent.Models.Customer>
+﻿
+@model AutoRent.ViewModels.CustomerData
 
 @{
     ViewBag.Title = "Index";
@@ -12,31 +13,36 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.fullName)
+            Full name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.firstName)
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.lastName)
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.middleName)
+            Middle Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.passportDetails)
+            Passport Details
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.phoneNumber)
+            Phone Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.discountPercentage)
+            Percentage of Discount
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+@foreach (var item in Model.customers) {
+    string selectedRow = "";
+    if (item.ID == ViewBag.selectedCustomerId)
+    {
+        selectedRow = "success";
+    }
+    <tr class="@selectedRow">
         <td>
             @Html.DisplayFor(modelItem => item.fullName)
         </td>
@@ -60,6 +66,7 @@
         </td>
         <td>
             @Html.ActionLink("Add Query", "AddQuery", new { id = item.ID }) |
+            @Html.ActionLink("Select", "Index", new { id = item.ID}) |
             @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
             @Html.ActionLink("Details", "Details", new { id=item.ID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
@@ -68,3 +75,37 @@
 }
 
 </table>
+@if (Model.queries != null)
+{
+    <h3>Selected Customer Queries</h3>
+    <table class="table">
+        <tr>
+            <th>Rent Start Date</th>
+            <th>Days To Rent</th>
+            <th>Favourite Brand</th>
+            <th>Max Rent Price Per Day</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.queries)
+        {
+            <tr>
+                <td>
+                    @item.rentStartDate
+                </td>
+                <td>
+                    @item.rentDays
+                </td>
+                <td>
+                    @item.favouriteBrand
+                </td>
+                <td>
+                    @item.maxRentPricePerDay
+                </td>
+                <td>
+                </td>
+            </tr>
+        }
+
+    </table>
+}

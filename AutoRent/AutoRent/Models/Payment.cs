@@ -23,7 +23,7 @@ namespace AutoRent.Models
         [Required]
         public decimal amount { get; set; }
 
-        public virtual Rent Rent { get; set; }
+        public virtual RentDeal Rent { get; set; }
         public virtual Penalty Penalty { get; set; }
     }
 }

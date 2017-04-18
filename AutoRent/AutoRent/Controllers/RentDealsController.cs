@@ -10,120 +10,120 @@ using AutoRent.Models;
 
 namespace AutoRent.Controllers
 {
-    public class RentsController : Controller
+    public class RentDealsController : Controller
     {
         private AutoRentContext db = new AutoRentContext();
 
-        // GET: Rents
+        // GET: RentDeals
         public ActionResult Index()
         {
             var rents = db.Rents.Include(r => r.car).Include(r => r.customer).Include(r => r.customerFavour);
             return View(rents.ToList());
         }
 
-        // GET: Rents/Details/5
+        // GET: RentDeals/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rent rent = db.Rents.Find(id);
-            if (rent == null)
+            RentDeal rentDeal = db.Rents.Find(id);
+            if (rentDeal == null)
             {
                 return HttpNotFound();
             }
-            return View(rent);
+            return View(rentDeal);
         }
 
-        // GET: Rents/Create
+        // GET: RentDeals/Create
         public ActionResult Create()
         {
             ViewBag.CarID = new SelectList(db.Cars, "ID", "brand");
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName");
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand");
+            ViewBag.CustomerQueryID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand");
             return View();
         }
 
-        // POST: Rents/Create
+        // POST: RentDeals/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CarID,CustomerID,CustomerFavourID,dateOfService,dateOfReturn")] Rent rent)
+        public ActionResult Create([Bind(Include = "ID,CarID,CustomerID,CustomerQueryID,dateOfService,dateOfReturn")] RentDeal rentDeal)
         {
             if (ModelState.IsValid)
             {
-                db.Rents.Add(rent);
+                db.Rents.Add(rentDeal);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rent.CarID);
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rent.CustomerID);
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerQueryID);
-            return View(rent);
+            ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rentDeal.CarID);
+            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rentDeal.CustomerID);
+            ViewBag.CustomerQueryID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rentDeal.CustomerQueryID);
+            return View(rentDeal);
         }
 
-        // GET: Rents/Edit/5
+        // GET: RentDeals/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rent rent = db.Rents.Find(id);
-            if (rent == null)
+            RentDeal rentDeal = db.Rents.Find(id);
+            if (rentDeal == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rent.CarID);
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rent.CustomerID);
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerQueryID);
-            return View(rent);
+            ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rentDeal.CarID);
+            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rentDeal.CustomerID);
+            ViewBag.CustomerQueryID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rentDeal.CustomerQueryID);
+            return View(rentDeal);
         }
 
-        // POST: Rents/Edit/5
+        // POST: RentDeals/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,CarID,CustomerID,CustomerFavourID,dateOfService,dateOfReturn")] Rent rent)
+        public ActionResult Edit([Bind(Include = "ID,CarID,CustomerID,CustomerQueryID,dateOfService,dateOfReturn")] RentDeal rentDeal)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(rent).State = EntityState.Modified;
+                db.Entry(rentDeal).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rent.CarID);
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rent.CustomerID);
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerQueryID);
-            return View(rent);
+            ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rentDeal.CarID);
+            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rentDeal.CustomerID);
+            ViewBag.CustomerQueryID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rentDeal.CustomerQueryID);
+            return View(rentDeal);
         }
 
-        // GET: Rents/Delete/5
+        // GET: RentDeals/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Rent rent = db.Rents.Find(id);
-            if (rent == null)
+            RentDeal rentDeal = db.Rents.Find(id);
+            if (rentDeal == null)
             {
                 return HttpNotFound();
             }
-            return View(rent);
+            return View(rentDeal);
         }
 
-        // POST: Rents/Delete/5
+        // POST: RentDeals/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Rent rent = db.Rents.Find(id);
-            db.Rents.Remove(rent);
+            RentDeal rentDeal = db.Rents.Find(id);
+            db.Rents.Remove(rentDeal);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -22,6 +22,7 @@ namespace AutoRent.Models
         public DateTime rentStartDate { get; set; }
 
         [Display(Name="Days To Rent")]
+        [Range(1, int.MaxValue)]
         [Required]
         public int rentDays { get; set; }
 
@@ -30,6 +31,7 @@ namespace AutoRent.Models
 
         [Display(Name="Max Rent Price Per Day")]
         [DataType(DataType.Currency)]
+        [Range(0.0, Double.MaxValue)]
         public decimal maxRentPricePerDay { get; set; }
 
         [Display(Name="Customer")]
