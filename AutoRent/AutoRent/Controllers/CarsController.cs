@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoRent.Models;
-using AutoRent.ViewModels;
 
 namespace AutoRent.Controllers
 {
@@ -15,12 +14,6 @@ namespace AutoRent.Controllers
     {
 
         private AutoRentContext db = new AutoRentContext();
-
-        /*public ActionResult Index()
-        {
-            return View(db.Cars.ToList());
-        }*/
-
 
         public ActionResult Index(string filter)
         {

@@ -16,6 +16,8 @@ namespace AutoRent.Models
         public int? CustomerID { get; set; }
 
         [Display(Name="Rent Start Date")]
+        [DisplayFormat(DataFormatString = "{0:dd.MM.yyyy}", ApplyFormatInEditMode = true)]
+        [DataType(DataType.Date)]
         [Required]
         public DateTime rentStartDate { get; set; }
 
@@ -32,7 +34,6 @@ namespace AutoRent.Models
 
         [Display(Name="Customer")]
         [ForeignKey("CustomerID")]
-        [Required]
         public virtual Customer customer { get; set; }
     }
 }

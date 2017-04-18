@@ -46,6 +46,6 @@ namespace AutoRent.Models
         [DisplayFormat(DataFormatString = "{0:P}")]
         public decimal? discountPercentage { get; set; }
 
-
+        public virtual ICollection<CustomerQuery> customerQueries { get; set; }
     }
 }
