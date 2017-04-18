@@ -22,7 +22,7 @@ namespace AutoRent.Models
         public DateTime rentStartDate { get; set; }
 
         [Display(Name="Days To Rent")]
-        [Range(1, int.MaxValue)]
+        [Range(1, int.MaxValue, ErrorMessage="Days value should be positive integer")]
         [Required]
         public int rentDays { get; set; }
 
@@ -31,7 +31,7 @@ namespace AutoRent.Models
 
         [Display(Name="Max Rent Price Per Day")]
         [DataType(DataType.Currency)]
-        [Range(0.0, Double.MaxValue)]
+        [Range(0.0, Double.MaxValue, ErrorMessage="Rent price limit should be positive integer")]
         public decimal maxRentPricePerDay { get; set; }
 
         [Display(Name="Customer")]
