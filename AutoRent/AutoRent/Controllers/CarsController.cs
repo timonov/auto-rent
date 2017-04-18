@@ -7,20 +7,40 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoRent.Models;
+using AutoRent.ViewModels;
 
 namespace AutoRent.Controllers
 {
     public class CarsController : Controller
     {
+
         private AutoRentContext db = new AutoRentContext();
 
-        // GET: Cars
-        public ActionResult Index()
+        /*public ActionResult Index()
         {
             return View(db.Cars.ToList());
+        }*/
+
+
+        public ActionResult Index(string filter)
+        {
+            var cars = from car in db.Cars
+                       select car;
+            switch(filter)
+            {
+                case "Available":
+                    cars = cars.Where(car => !car.isTaken);
+                    break;
+                case "Taken":
+                    cars = cars.Where(car => car.isTaken);
+                    break;
+                default:
+                    break;
+            }
+
+            return View(cars.ToList());
         }
 
-        // GET: Cars/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -35,18 +55,14 @@ namespace AutoRent.Controllers
             return View(car);
         }
 
-        // GET: Cars/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cars/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // public ActionResult Create([Bind(Include = "ID,brand,totalValue,rentPrice,isTaken")] Car car)
         public ActionResult Create([Bind(Include = "ID,brand,totalValue,rentPrice")] Car car)
         {
             if (ModelState.IsValid)
@@ -59,7 +75,7 @@ namespace AutoRent.Controllers
             return View(car);
         }
 
-        // GET: Cars/Edit/5
+
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -74,9 +90,7 @@ namespace AutoRent.Controllers
             return View(car);
         }
 
-        // POST: Cars/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,brand,totalValue,rentPrice,isTaken")] Car car)
@@ -90,7 +104,7 @@ namespace AutoRent.Controllers
             return View(car);
         }
 
-        // GET: Cars/Delete/5
+
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,7 +119,7 @@ namespace AutoRent.Controllers
             return View(car);
         }
 
-        // POST: Cars/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

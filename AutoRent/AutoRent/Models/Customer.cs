@@ -45,5 +45,7 @@ namespace AutoRent.Models
         [Display(Name = "Percentage of Discount")]
         [DisplayFormat(DataFormatString = "{0:P}")]
         public decimal? discountPercentage { get; set; }
+
+
     }
 }
