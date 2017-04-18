@@ -15,7 +15,7 @@ namespace AutoRent.Models
 
         public int? CarID { get; set; }
         public int? CustomerID { get; set; }
-        public int? CustomerFavourID { get; set; }
+        public int? CustomerQueryID { get; set; }
 
         [Display(Name="Service Date")]
         [Required]
@@ -31,7 +31,7 @@ namespace AutoRent.Models
         [ForeignKey("CustomerID")]
         public virtual Customer customer { get; set; }
 
-        [ForeignKey("CustomerFavourID")]
-        public virtual CustomerFavour customerFavour { get; set; }
+        [ForeignKey("CustomerQueryID")]
+        public virtual CustomerQuery customerFavour { get; set; }
     }
 }

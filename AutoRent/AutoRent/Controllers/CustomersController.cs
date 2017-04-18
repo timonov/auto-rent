@@ -35,21 +35,28 @@ namespace AutoRent.Controllers
             return View(customer);
         }
 
-        // GET: Customers/Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Customers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,firstName,lastName,middleName,passportDetails,phoneNumber,discountPercentage")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                if (!customer.discountPercentage.HasValue)
+                {
+                    customer.discountPercentage = 0;
+                }
+                else
+                {
+                    customer.discountPercentage /= 100;
+                }
+
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");

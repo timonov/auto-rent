@@ -12,6 +12,15 @@ namespace AutoRent.Models
         [Key]
         public int ID { get; set; }
 
+        [Display(Name="Full name")]
+        public string fullName
+        {
+            get
+            {
+                return lastName + ", " + firstName + " " + middleName;
+            }
+        }
+
         [Display(Name="First Name")]
         [Required]
         public string firstName { get; set; }
@@ -32,8 +41,9 @@ namespace AutoRent.Models
         [DataType(DataType.PhoneNumber)]
         public string phoneNumber { get; set; }
 
-        [Required]
-        [Display(Name="Percentage of Discount")]
-        public decimal discountPercentage { get; set; }
+
+        [Display(Name = "Percentage of Discount")]
+        [DisplayFormat(DataFormatString = "{0:P}")]
+        public decimal? discountPercentage { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace AutoRent.Controllers
 
             ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rent.CarID);
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rent.CustomerID);
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerFavourID);
+            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerQueryID);
             return View(rent);
         }
 
@@ -79,7 +79,7 @@ namespace AutoRent.Controllers
             }
             ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rent.CarID);
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rent.CustomerID);
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerFavourID);
+            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerQueryID);
             return View(rent);
         }
 
@@ -98,7 +98,7 @@ namespace AutoRent.Controllers
             }
             ViewBag.CarID = new SelectList(db.Cars, "ID", "brand", rent.CarID);
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", rent.CustomerID);
-            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerFavourID);
+            ViewBag.CustomerFavourID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rent.CustomerQueryID);
             return View(rent);
         }
 

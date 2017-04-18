@@ -8,7 +8,7 @@ using System.Web;
 
 namespace AutoRent.Models
 {
-    public class CustomerFavour
+    public class CustomerQuery
     {
         [Key]
         public int ID { get; set; }
