@@ -14,7 +14,6 @@ namespace AutoRent.Controllers
     {
         private AutoRentContext db = new AutoRentContext();
 
-        // GET: CustomerQueries
         public ActionResult Index()
         {
             var customerFavours = db.CustomerFavours.Include(c => c.customer);
