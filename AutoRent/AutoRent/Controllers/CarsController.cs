@@ -15,6 +15,25 @@ namespace AutoRent.Controllers
 
         private AutoRentContext db = new AutoRentContext();
 
+
+        public void TakeCar(int? carId)
+        {
+            if (carId != null)
+            {
+                db.Cars.Find(carId).isTaken = true;
+                db.SaveChanges();
+            }
+        }
+
+        public void ReleaseCar(int? carId)
+        {
+            if (carId != null)
+            {
+                db.Cars.Find(carId).isTaken = false;
+                db.SaveChanges();
+            }
+        }
+
         public ActionResult Index(string filter)
         {
             var cars = from car in db.Cars
@@ -45,12 +64,18 @@ namespace AutoRent.Controllers
 
             CustomerQuery customerQuery = db.CustomerFavours.Find(customerQueryId);
 
+            if (customerQuery == null)
+            {
+                return HttpNotFound();
+            }
+
             var matchedCars = db.Cars.Where(car => !car.isTaken).
                 Where(car => car.rentPrice <= customerQuery.maxRentPricePerDay);
 
             if (customerQuery.favouriteBrand != null)
             {
-                matchedCars = matchedCars.Where(car => car.brand == customerQuery.favouriteBrand);
+                matchedCars = matchedCars.
+                    Where(car => car.brand == customerQuery.favouriteBrand);
             }
 
             if (matchedCars.Any())
@@ -60,9 +85,25 @@ namespace AutoRent.Controllers
             return View();
         }
 
-        public ActionResult AddCar(int? id, int? customerQueryId)
+        public ActionResult AddCar(int? selectedCarId, int? selectedQueryId)
         {
-            return RedirectToAction("Index", "Customers");
+            if (selectedCarId == null | selectedQueryId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var query = db.CustomerFavours.Find(selectedQueryId);
+
+            if (query == null)
+            {
+                return HttpNotFound();
+            }
+
+            var selectedCustomerId = query.CustomerID;
+
+            return RedirectToAction("AddDeal", "RentDeals",
+                new { customerId = selectedCustomerId, queryId = selectedQueryId,
+                    carId = selectedCarId});
         }
 
         public ActionResult Details(int? id)

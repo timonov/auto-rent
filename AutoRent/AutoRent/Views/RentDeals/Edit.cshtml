@@ -1,4 +1,4 @@
-﻿@model AutoRent.Models.Rent
+﻿@model AutoRent.Models.RentDeal
 
 @{
     ViewBag.Title = "Edit";
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Rent</h4>
+        <h4>RentDeal</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
@@ -34,10 +34,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerFavourID, "CustomerFavourID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerQueryID, "CustomerQueryID", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CustomerFavourID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.CustomerFavourID, "", new { @class = "text-danger" })
+                @Html.DropDownList("CustomerQueryID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CustomerQueryID, "", new { @class = "text-danger" })
             </div>
         </div>
 

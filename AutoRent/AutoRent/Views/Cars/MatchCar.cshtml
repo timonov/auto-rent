@@ -36,7 +36,8 @@
                     @Html.DisplayFor(modelItem => item.rentPrice)
                 </td>
                 <td>
-                    @Html.ActionLink("Select car", "AddCar", new { id = item.ID, customerQueryId = ViewBag.selectedQueryId })
+                    @Html.ActionLink("Select car", "AddCar", new { selectedCarId = item.ID,
+                   selectedQueryId = ViewBag.selectedQueryId })
                 </td>
             </tr>
         }
