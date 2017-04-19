@@ -101,7 +101,7 @@ namespace AutoRent.Controllers
 
             var selectedCustomerId = query.CustomerID;
 
-            return RedirectToAction("AddDeal", "RentDeals",
+            return RedirectToAction("Create", "RentDeals",
                 new { customerId = selectedCustomerId, queryId = selectedQueryId,
                     carId = selectedCarId});
         }

@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Adding New Customer Query</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,46 +12,59 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>CustomerQuery</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CustomerID, "Customer name", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CustomerID, "Customer name",
+                htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CustomerID", null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                @Html.DropDownList("customersList", null,
+                    htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
             </div>
         </div>
        
         <div class="form-group">
-            @Html.LabelFor(model => model.rentStartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.rentStartDate,
+                htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.rentStartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.rentStartDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.rentStartDate,
+                    new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rentStartDate,
+                    "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.rentDays, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.rentDays,
+                htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.rentDays, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.rentDays, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.rentDays,
+                    new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.rentDays,
+                    "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.favouriteBrand, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.favouriteBrand,
+                htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.favouriteBrand, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.favouriteBrand, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.favouriteBrand,
+                    new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.favouriteBrand,
+                    "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.maxRentPricePerDay, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.maxRentPricePerDay,
+                htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.maxRentPricePerDay, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.maxRentPricePerDay, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.maxRentPricePerDay,
+                    new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.maxRentPricePerDay,
+                    "", new { @class = "text-danger" })
             </div>
         </div>
 

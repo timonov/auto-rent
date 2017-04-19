@@ -41,7 +41,8 @@ namespace AutoRent.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerId);
+            ViewBag.customersList = new SelectList
+                (db.Customers, "ID", "fullName", customerId);
 
             return View();
         }

@@ -17,6 +17,19 @@ namespace AutoRent.Controllers
         private CarsController carsController = new CarsController();
 
 
+        public ActionResult AddDeal()
+        {
+            if (TempData["Deal"] != null)
+            {
+                var rentDeal = (RentDeal)TempData["Deal"];
+
+                carsController.TakeCar(rentDeal.CarID);
+
+                db.Rents.Add(rentDeal);
+                db.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
 
         public ActionResult Index()
         {
@@ -41,7 +54,7 @@ namespace AutoRent.Controllers
         }
 
 
-        public ActionResult AddDeal(int? customerId, int? queryId, int? carId)
+        public ActionResult Create(int? customerId, int? queryId, int? carId)
         {
             if (customerId == null | queryId == null | carId == null)
             {
@@ -73,23 +86,9 @@ namespace AutoRent.Controllers
                 dateOfReturn = startingDate.AddDays(daysForRent)
             };
 
+            TempData["Deal"] = anotherRentDeal;
+
             return View("Create", anotherRentDeal);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CarID,CustomerID,CustomerQueryID,dateOfService,dateOfReturn")] RentDeal rentDeal)
-        {
-            if (ModelState.IsValid)
-            {
-                carsController.TakeCar(rentDeal.CarID);
-
-                db.Rents.Add(rentDeal);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(rentDeal);
         }
 
         public ActionResult Edit(int? id)

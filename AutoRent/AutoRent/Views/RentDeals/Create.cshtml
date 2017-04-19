@@ -4,16 +4,12 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Enrolling new Rent Deal</h2>
+<h2>Enrolling New Rent Deal</h2>
 
-
-
-        
-<h4>RentDeal</h4>
 <hr />
 <dl class="dl-horizontal">
     <dt>
-        @Html.DisplayNameFor(model => model.car.brand)
+        Selected Car Brand
     </dt>
 
     <dd>
@@ -21,19 +17,19 @@
     </dd>
 
     <dt>
-        @Html.DisplayNameFor(model => model.customer.firstName)
+        Customer Full Name
     </dt>
 
     <dd>
-        @Html.DisplayFor(model => model.customer.firstName)
+        @Html.DisplayFor(model => model.customer.fullName)
     </dd>
 
     <dt>
-        @Html.DisplayNameFor(model => model.customerFavour.favouriteBrand)
+        @Html.DisplayNameFor(model => model.car.rentPrice)
     </dt>
 
     <dd>
-        @Html.DisplayFor(model => model.customerFavour.favouriteBrand)
+        @Html.DisplayFor(model => model.car.rentPrice)
     </dd>
 
     <dt>
@@ -51,21 +47,11 @@
     <dd>
         @Html.DisplayFor(model => model.dateOfReturn)
     </dd>
-
 </dl>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-
-    <div class="form-actions no-color">
-        <input type="submit" value="Create" class="btn btn-default" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-}
-
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Proceed", "AddDeal")
+    @Html.ActionLink("Back to Customers List", "Index", "Customers")
 </div>
 
 @section Scripts {
