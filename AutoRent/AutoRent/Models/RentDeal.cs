@@ -37,5 +37,9 @@ namespace AutoRent.Models
 
         [ForeignKey("CustomerQueryID")]
         public virtual CustomerQuery customerFavour { get; set; }
+
+        [Display(Name="Is Closed?")]
+        [Required]
+        public bool isClosed { get; set; }
     }
 }

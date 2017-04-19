@@ -24,7 +24,9 @@ namespace AutoRent.Controllers
             {
                 ViewBag.selectedCustomerID = id;
                 customerViewModel.queries =
-                    db.CustomerFavours.Where(query => query.CustomerID == id);
+                    db.CustomerFavours
+                    .Where(query => query.CustomerID == id)
+                    .Where(query => !query.isCompleted);
             }
 
             return View(customerViewModel);

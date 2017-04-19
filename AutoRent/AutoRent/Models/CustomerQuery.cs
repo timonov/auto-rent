@@ -34,6 +34,9 @@ namespace AutoRent.Models
         [Range(0.0, Double.MaxValue, ErrorMessage="Rent price limit should be positive integer")]
         public decimal maxRentPricePerDay { get; set; }
 
+        [Display(Name = "Is Completed?")]
+        public bool isCompleted { get; set; }
+
         [Display(Name="Customer")]
         [ForeignKey("CustomerID")]
         public virtual Customer customer { get; set; }

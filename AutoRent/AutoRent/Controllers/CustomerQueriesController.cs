@@ -14,6 +14,17 @@ namespace AutoRent.Controllers
     {
         private AutoRentContext db = new AutoRentContext();
 
+
+        public void CompleteQuery(int? queryId)
+        {
+            if (queryId != null)
+            {
+                db.CustomerFavours.Find(queryId).isCompleted = true;
+
+                db.SaveChanges();
+            }
+        }
+
         public ActionResult Index()
         {
             var customerFavours = db.CustomerFavours.Include(c => c.customer);
@@ -33,6 +44,9 @@ namespace AutoRent.Controllers
             }
             return View(customerQuery);
         }
+
+
+
 
         public ActionResult Create(int? customerId)
         {

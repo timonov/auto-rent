@@ -16,6 +16,8 @@ namespace AutoRent.Controllers
 
         private CarsController carsController = new CarsController();
 
+        private CustomerQueriesController queriesController = new CustomerQueriesController();
+
 
         public ActionResult AddDeal()
         {
@@ -24,6 +26,8 @@ namespace AutoRent.Controllers
                 var rentDeal = (RentDeal)TempData["Deal"];
 
                 carsController.TakeCar(rentDeal.CarID);
+
+                queriesController.CompleteQuery(rentDeal.CustomerQueryID);
 
                 db.Rents.Add(rentDeal);
                 db.SaveChanges();
@@ -79,12 +83,13 @@ namespace AutoRent.Controllers
                 CarID = carId,
                 CustomerQueryID = queryId,
                 CustomerID = customerId,
-                car = db.Cars.Find(carId),
-                customer = db.Customers.Find(customerId),
-                customerFavour = db.CustomerFavours.Find(queryId),
                 dateOfService = startingDate,
                 dateOfReturn = startingDate.AddDays(daysForRent)
             };
+
+            ViewBag.Brand = db.Cars.Find(carId).brand;
+            ViewBag.FullName = db.Customers.Find(customerId).fullName;
+            ViewBag.RentPrice = db.Cars.Find(carId).rentPrice;
 
             TempData["Deal"] = anotherRentDeal;
 
