@@ -1,15 +1,14 @@
 ﻿@model IEnumerable<AutoRent.Models.Payment>
 
 @{
-    ViewBag.Title = "Closed rents list";
+    ViewBag.Title = "ShowClosed";
 }
 
-<h2>Closed deals list</h2>
+<h2>ShowClosed</h2>
 
 <p>
-    @Html.ActionLink("Show active rents", "Index", "RentDeals")
+    @Html.ActionLink("Create New", "Create")
 </p>
-
 <table class="table">
     <tr>
         <th>

@@ -1,14 +1,13 @@
 ﻿@model IEnumerable<AutoRent.Models.RentDeal>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Active rents list";
 }
 
-<h2>Rent Deals List</h2>
+<h2>Active rents list</h2>
 
 <p>
-    @Html.ActionLink("Show all", "Index") |
-    @Html.ActionLink("Show closed", "Index", new { filter = "Closed" })
+    @Html.ActionLink("Show closed rents", "Index", "Payments")
 </p>
 
 <table class="table">

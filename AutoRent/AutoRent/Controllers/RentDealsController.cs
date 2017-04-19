@@ -35,27 +35,17 @@ namespace AutoRent.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Index(string filter)
+        public ActionResult Index()
         {
-            var rents = from rent in db.Rents
-                        select rent;
-
-            switch (filter)
-            {
-                case "Closed":
-                    rents = rents.Include(r => r.car).
-                        Include(r => r.customer).Include(r => r.customerFavour)
-                        .Where(r => r.isClosed);
-                    break;
-                default:
-                    rents = rents.Include(r => r.car).
-                        Include(r => r.customer).Include(r => r.customerFavour);
-                    break;
-            }
+            var rents = db.Rents.Include(r => r.car).
+                Include(r => r.customer).Include(r => r.customerFavour)
+                .Where(r => !r.isClosed);
 
             return View(rents.ToList());
         }
 
+
+       
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -106,7 +96,7 @@ namespace AutoRent.Controllers
 
             TempData["Deal"] = anotherRentDeal;
 
-            return View("Create", anotherRentDeal);
+            return View(anotherRentDeal);
         }
 
 

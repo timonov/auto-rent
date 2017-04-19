@@ -236,13 +236,14 @@
     <Content Include="Views\CustomerQueries\Delete.cshtml" />
     <Content Include="Views\CustomerQueries\Edit.cshtml" />
     <Content Include="Views\CustomerQueries\Index.cshtml" />
-    <Content Include="Views\RentDeals\Create.cshtml" />
+    <Content Include="Views\RentDeals\CreateDeal.cshtml" />
     <Content Include="Views\RentDeals\Delete.cshtml" />
     <Content Include="Views\RentDeals\Details.cshtml" />
     <Content Include="Views\RentDeals\Edit.cshtml" />
     <Content Include="Views\RentDeals\Index.cshtml" />
     <Content Include="Views\Cars\MatchCar.cshtml" />
     <Content Include="Views\CustomerQueries\Details.cshtml" />
+    <Content Include="Views\RentDeals\ShowClosed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
