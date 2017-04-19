@@ -25,6 +25,37 @@ namespace AutoRent.Controllers
             }
         }
 
+        public ActionResult CreateQuery(int? customerId)
+        {
+            if (customerId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.customersList = new SelectList
+                (db.Customers, "ID", "fullName", customerId);
+
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateQuery([Bind(Include = "ID,CustomerID,rentStartDate,rentDays,favouriteBrand,maxRentPricePerDay")] CustomerQuery customerQuery)
+        {
+            if (ModelState.IsValid)
+            {
+                db.CustomerFavours.Add(customerQuery);
+                db.SaveChanges();
+                return RedirectToAction("Index", "Customers", new { id = customerQuery.CustomerID });
+            }
+
+            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerQuery.CustomerID);
+
+            return View(customerQuery);
+        }
+
+
         public ActionResult Index()
         {
             var customerFavours = db.CustomerFavours.Include(c => c.customer);
@@ -45,40 +76,6 @@ namespace AutoRent.Controllers
             return View(customerQuery);
         }
 
-
-
-
-        public ActionResult Create(int? customerId)
-        {
-            if (customerId == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            ViewBag.customersList = new SelectList
-                (db.Customers, "ID", "fullName", customerId);
-
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,CustomerID,rentStartDate,rentDays,favouriteBrand,maxRentPricePerDay")] CustomerQuery customerQuery)
-        {
-            if (ModelState.IsValid)
-            {
-                db.CustomerFavours.Add(customerQuery);
-                db.SaveChanges();
-                return RedirectToAction("Index", "Customers", new { id = customerQuery.CustomerID });
-            }
-
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerQuery.CustomerID);
-
-            return View(customerQuery);
-        }
-
-
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +90,6 @@ namespace AutoRent.Controllers
             ViewBag.CustomerID = new SelectList(db.Customers, "ID", "firstName", customerQuery.CustomerID);
             return View(customerQuery);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

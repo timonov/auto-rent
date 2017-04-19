@@ -101,26 +101,12 @@ namespace AutoRent.Controllers
 
             var selectedCustomerId = query.CustomerID;
 
-            return RedirectToAction("Create", "RentDeals",
+            return RedirectToAction("CreateDeal", "RentDeals",
                 new { customerId = selectedCustomerId, queryId = selectedQueryId,
                     carId = selectedCarId});
         }
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Car car = db.Cars.Find(id);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            return View(car);
-        }
-
-        public ActionResult Create()
+        public ActionResult CreateCar()
         {
             return View();
         }
@@ -128,7 +114,7 @@ namespace AutoRent.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,brand,totalValue,rentPrice")] Car car)
+        public ActionResult CreateCar([Bind(Include = "ID,brand,totalValue,rentPrice")] Car car)
         {
             if (ModelState.IsValid)
             {
@@ -138,61 +124,6 @@ namespace AutoRent.Controllers
             }
 
             return View(car);
-        }
-
-
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Car car = db.Cars.Find(id);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            return View(car);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,brand,totalValue,rentPrice,isTaken")] Car car)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(car).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(car);
-        }
-
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Car car = db.Cars.Find(id);
-            if (car == null)
-            {
-                return HttpNotFound();
-            }
-            return View(car);
-        }
-
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Car car = db.Cars.Find(id);
-            db.Cars.Remove(car);
-            db.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

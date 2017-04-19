@@ -6,6 +6,10 @@
 
 <h2>Rent Deals List</h2>
 
+<p>
+    @Html.ActionLink("Show all", "Index") |
+    @Html.ActionLink("Show closed", "Index", new { filter = "Closed" })
+</p>
 
 <table class="table">
     <tr>

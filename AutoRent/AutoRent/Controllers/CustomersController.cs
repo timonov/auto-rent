@@ -39,7 +39,7 @@ namespace AutoRent.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return RedirectToAction("Create", "CustomerQueries", new { customerId = id });
+            return RedirectToAction("CreateQuery", "CustomerQueries", new { customerId = id });
         }
 
         public ActionResult SelectCarToRent(int? queryId)
@@ -53,22 +53,7 @@ namespace AutoRent.Controllers
         }
 
 
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
-
-
-        public ActionResult Create()
+        public ActionResult CreateCustomer()
         {
             return View();
         }
@@ -76,7 +61,7 @@ namespace AutoRent.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,firstName,lastName,middleName,passportDetails,phoneNumber,discountPercentage")] Customer customer)
+        public ActionResult CreateCustomer([Bind(Include = "ID,firstName,lastName,middleName,passportDetails,phoneNumber,discountPercentage")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -95,63 +80,6 @@ namespace AutoRent.Controllers
             }
 
             return View(customer);
-        }
-
-
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,firstName,lastName,middleName,passportDetails,phoneNumber,discountPercentage")] Customer customer)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(customer).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(customer);
-        }
-
-
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
-        }
-
-
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Customer customer = db.Customers.Find(id);
-            db.CustomerFavours.RemoveRange(customer.customerQueries);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
-
-            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

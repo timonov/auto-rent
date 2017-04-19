@@ -2,13 +2,13 @@
 @model AutoRent.ViewModels.CustomerData
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Customers List";
 }
 
 <h2>Сustomers list</h2>
 
 <p>
-    @Html.ActionLink("Add new customer", "Create")
+    @Html.ActionLink("Add new customer", "CreateCustomer")
 </p>
 <table class="table">
     <tr>
@@ -66,10 +66,7 @@
         </td>
         <td>
             @Html.ActionLink("Add Query", "AddQuery", new { id = item.ID }) |
-            @Html.ActionLink("Select", "Index", new { id = item.ID}) |
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Select", "Index", new { id = item.ID})
         </td>
     </tr>
 }

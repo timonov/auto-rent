@@ -35,13 +35,26 @@ namespace AutoRent.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string filter)
         {
-            var rents = db.Rents.Include(r => r.car).
-                Include(r => r.customer).Include(r => r.customerFavour);
+            var rents = from rent in db.Rents
+                        select rent;
+
+            switch (filter)
+            {
+                case "Closed":
+                    rents = rents.Include(r => r.car).
+                        Include(r => r.customer).Include(r => r.customerFavour)
+                        .Where(r => r.isClosed);
+                    break;
+                default:
+                    rents = rents.Include(r => r.car).
+                        Include(r => r.customer).Include(r => r.customerFavour);
+                    break;
+            }
+
             return View(rents.ToList());
         }
-
 
         public ActionResult Details(int? id)
         {
@@ -58,7 +71,7 @@ namespace AutoRent.Controllers
         }
 
 
-        public ActionResult Create(int? customerId, int? queryId, int? carId)
+        public ActionResult CreateDeal(int? customerId, int? queryId, int? carId)
         {
             if (customerId == null | queryId == null | carId == null)
             {
@@ -95,6 +108,7 @@ namespace AutoRent.Controllers
 
             return View("Create", anotherRentDeal);
         }
+
 
         public ActionResult Edit(int? id)
         {

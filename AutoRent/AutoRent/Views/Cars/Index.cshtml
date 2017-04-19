@@ -4,13 +4,13 @@
 
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Cars list";
 }
 
 <h2>Cars list</h2>
 
 <p>
-    @Html.ActionLink("Add new car", "Create")
+    @Html.ActionLink("Add new car", "CreateCar")
 </p>
 
 <p>
@@ -30,7 +30,9 @@
         <th>
             @Html.DisplayNameFor(model => model.rentPrice)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.isTaken)
+        </th>
     </tr>
 @foreach (var item in Model) {
     <tr>
