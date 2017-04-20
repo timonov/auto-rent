@@ -22,13 +22,7 @@
             @Html.DisplayNameFor(model => model.Rent.car.rentPrice)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Rent.dateOfService)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Rent.dateOfReturn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Penalty.amount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.amount)
@@ -39,23 +33,21 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayNameFor(model => model.Rent.customer.fullName)
+            @Html.DisplayFor(model => item.Rent.customer.fullName)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.Rent.car.brand)
+            @Html.DisplayFor(model => item.Rent.car.brand)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.Rent.car.rentPrice)
+            @Html.DisplayFor(model => item.Rent.car.rentPrice)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.Rent.dateOfService)
+            @Html.DisplayFor(model => item.Rent.dateOfReturn)
         </td>
         <td>
-            @Html.DisplayNameFor(model => model.Penalty.amount)
+            @Html.DisplayFor(model => item.amount)
         </td>
-        <td>
-            @Html.DisplayNameFor(model => model.amount)
-        </td>
+        <td></td>
     </tr>
 }
 

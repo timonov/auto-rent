@@ -23,7 +23,10 @@ namespace AutoRent.Models
         [Required]
         public decimal amount { get; set; }
 
+        [ForeignKey("RentID")]
         public virtual RentDeal Rent { get; set; }
+
+        [ForeignKey("PenaltyID")]
         public virtual Penalty Penalty { get; set; }
     }
 }
