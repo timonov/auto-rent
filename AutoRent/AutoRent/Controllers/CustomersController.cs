@@ -23,6 +23,7 @@ namespace AutoRent.Controllers
             if (id != null)
             {
                 ViewBag.selectedCustomerID = id;
+
                 customerViewModel.queries =
                     db.CustomerFavours
                     .Where(query => query.CustomerID == id)

@@ -41,16 +41,19 @@ namespace AutoRent.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateQuery([Bind(Include = "ID,CustomerID,rentStartDate,rentDays,favouriteBrand,maxRentPricePerDay")] CustomerQuery customerQuery)
+        public ActionResult CreateQuery(
+            [Bind(Include = "ID,CustomerID,rentStartDate,rentDays,favouriteBrand,maxRentPricePerDay")] CustomerQuery customerQuery)
         {
             if (ModelState.IsValid)
             {
                 db.CustomerFavours.Add(customerQuery);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Customers", new { id = customerQuery.CustomerID });
+                return RedirectToAction("Index",
+                    "Customers", new { id = customerQuery.CustomerID });
             }
 
-            ViewBag.CustomerID = new SelectList(db.Customers, "ID", "fullName", customerQuery.CustomerID);
+            ViewBag.CustomerID = new SelectList
+                (db.Customers, "ID", "fullName", customerQuery.CustomerID);
 
             return View(customerQuery);
         }
