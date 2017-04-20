@@ -19,7 +19,17 @@ namespace AutoRent.Controllers
         private CustomerQueriesController queriesController = new CustomerQueriesController();
 
 
-        public ActionResult CloseDeal(int? id)
+        public void CloseDeal(int? rentId)
+        {
+            if (rentId != null)
+            {
+                db.Rents.Find(rentId).isClosed = true;
+
+                db.SaveChanges();
+            }
+        }
+
+        public ActionResult InitDealClose(int? id)
         {
             if (id == null)
             {

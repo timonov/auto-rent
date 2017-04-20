@@ -15,10 +15,31 @@ namespace AutoRent.Controllers
     {
         private AutoRentContext db = new AutoRentContext();
 
+        private CarsController carsController = new CarsController();
+        private RentDealsController dealsController = new RentDealsController();
+
         public ActionResult Index()
         {
             var payments = db.Payments.Include(p => p.Penalty).Include(p => p.Rent);
             return View(payments.ToList());
+        }
+
+
+        public ActionResult AddPayment()
+        {
+            if (TempData["Payment"] != null)
+            {
+                var payment = (Payment)TempData["Payment"];
+
+                carsController.ReleaseCar(db.Rents.Find(payment.RentID).CarID);
+
+                dealsController.CloseDeal(payment.RentID);
+
+                db.Payments.Add(payment);
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult CreatePayment(int? rentId)
@@ -49,6 +70,8 @@ namespace AutoRent.Controllers
                 RentID = rentId.Value,
                 amount = paymentConfirmationViewModel.priceAfterDiscount,
             };
+
+            TempData["Payment"] = rentPayment;
 
             return View(paymentConfirmationViewModel);
         }
