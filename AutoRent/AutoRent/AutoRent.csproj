@@ -229,21 +229,12 @@
     <Content Include="Views\Cars\CreateCar.cshtml" />
     <Content Include="Views\Cars\Index.cshtml" />
     <Content Include="Views\Payments\CreatePayment.cshtml" />
-    <Content Include="Views\Payments\Delete.cshtml" />
-    <Content Include="Views\Payments\Details.cshtml" />
-    <Content Include="Views\Payments\Edit.cshtml" />
     <Content Include="Views\Payments\Index.cshtml" />
     <Content Include="Views\CustomerQueries\CreateQuery.cshtml" />
-    <Content Include="Views\CustomerQueries\Delete.cshtml" />
-    <Content Include="Views\CustomerQueries\Edit.cshtml" />
     <Content Include="Views\CustomerQueries\Index.cshtml" />
     <Content Include="Views\RentDeals\CreateDeal.cshtml" />
-    <Content Include="Views\RentDeals\Delete.cshtml" />
-    <Content Include="Views\RentDeals\Details.cshtml" />
-    <Content Include="Views\RentDeals\Edit.cshtml" />
     <Content Include="Views\RentDeals\Index.cshtml" />
     <Content Include="Views\Cars\MatchCar.cshtml" />
-    <Content Include="Views\CustomerQueries\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
