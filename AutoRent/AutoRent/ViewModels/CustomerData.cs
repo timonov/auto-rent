@@ -10,6 +10,5 @@ namespace AutoRent.ViewModels
     {
         public IEnumerable<Customer> customers { get; set; }
         public IEnumerable<CustomerQuery> queries { get; set; }
-        public IEnumerable<RentDeal> deals { get; set; }
     }
 }

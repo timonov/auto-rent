@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoRent.Models;
+using AutoRent.ViewModels;
 
 namespace AutoRent.Controllers
 {
@@ -14,14 +15,44 @@ namespace AutoRent.Controllers
     {
         private AutoRentContext db = new AutoRentContext();
 
-        // GET: Payments
         public ActionResult Index()
         {
             var payments = db.Payments.Include(p => p.Penalty).Include(p => p.Rent);
             return View(payments.ToList());
         }
 
-        // GET: Payments/Details/5
+        public ActionResult CreatePayment(int? rentId)
+        {
+            if (rentId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var selectedDeal = db.Rents.Find(rentId);
+
+            PaymentData paymentConfirmationViewModel = new PaymentData
+            {
+                rentPrice = selectedDeal.car.rentPrice,
+                rentDays = Convert.ToInt32
+                    ((selectedDeal.dateOfReturn - selectedDeal.dateOfService).TotalDays),
+                customerDiscount = selectedDeal.customer.discountPercentage.Value
+            };
+
+            paymentConfirmationViewModel.priceBeforeDiscount =
+                paymentConfirmationViewModel.rentDays * paymentConfirmationViewModel.rentPrice;
+
+            paymentConfirmationViewModel.priceAfterDiscount = 
+                paymentConfirmationViewModel.priceBeforeDiscount * (1 - paymentConfirmationViewModel.customerDiscount);
+
+            Payment rentPayment = new Payment
+            {
+                RentID = rentId.Value,
+                amount = paymentConfirmationViewModel.priceAfterDiscount,
+            };
+
+            return View(paymentConfirmationViewModel);
+        }
+
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,7 +67,7 @@ namespace AutoRent.Controllers
             return View(payment);
         }
 
-        // GET: Payments/Create
+
         public ActionResult Create()
         {
             ViewBag.PenaltyID = new SelectList(db.Penalties, "ID", "ID");
@@ -44,9 +75,6 @@ namespace AutoRent.Controllers
             return View();
         }
 
-        // POST: Payments/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RentID,PenaltyID,amount")] Payment payment)
@@ -63,7 +91,7 @@ namespace AutoRent.Controllers
             return View(payment);
         }
 
-        // GET: Payments/Edit/5
+        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -80,9 +108,6 @@ namespace AutoRent.Controllers
             return View(payment);
         }
 
-        // POST: Payments/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RentID,PenaltyID,amount")] Payment payment)
@@ -97,8 +122,7 @@ namespace AutoRent.Controllers
             ViewBag.RentID = new SelectList(db.Rents, "ID", "ID", payment.RentID);
             return View(payment);
         }
-
-        // GET: Payments/Delete/5
+        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -113,7 +137,6 @@ namespace AutoRent.Controllers
             return View(payment);
         }
 
-        // POST: Payments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

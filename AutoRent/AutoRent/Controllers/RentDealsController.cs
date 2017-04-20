@@ -19,6 +19,16 @@ namespace AutoRent.Controllers
         private CustomerQueriesController queriesController = new CustomerQueriesController();
 
 
+        public ActionResult CloseDeal(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return RedirectToAction("CreatePayment", "Payments", new { rentId = id });
+        }
+
         public ActionResult AddDeal()
         {
             if (TempData["Deal"] != null)
@@ -42,22 +52,6 @@ namespace AutoRent.Controllers
                 .Where(r => !r.isClosed);
 
             return View(rents.ToList());
-        }
-
-
-       
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            RentDeal rentDeal = db.Rents.Find(id);
-            if (rentDeal == null)
-            {
-                return HttpNotFound();
-            }
-            return View(rentDeal);
         }
 
 
@@ -99,6 +93,19 @@ namespace AutoRent.Controllers
             return View(anotherRentDeal);
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RentDeal rentDeal = db.Rents.Find(id);
+            if (rentDeal == null)
+            {
+                return HttpNotFound();
+            }
+            return View(rentDeal);
+        }
 
         public ActionResult Edit(int? id)
         {
@@ -116,7 +123,6 @@ namespace AutoRent.Controllers
             ViewBag.CustomerQueryID = new SelectList(db.CustomerFavours, "ID", "favouriteBrand", rentDeal.CustomerQueryID);
             return View(rentDeal);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
