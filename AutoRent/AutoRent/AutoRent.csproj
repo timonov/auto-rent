@@ -165,7 +165,6 @@
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PaymentsController.cs" />
-    <Compile Include="Controllers\PenaltiesController.cs" />
     <Compile Include="Controllers\RentDealsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -176,7 +175,6 @@
     <Compile Include="Models\CustomerQuery.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Payment.cs" />
-    <Compile Include="Models\Penalty.cs" />
     <Compile Include="Models\RentDeal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -221,11 +219,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Customers\CreateCustomer.cshtml" />
     <Content Include="Views\Customers\Index.cshtml" />
-    <Content Include="Views\Penalties\Create.cshtml" />
-    <Content Include="Views\Penalties\Delete.cshtml" />
-    <Content Include="Views\Penalties\Details.cshtml" />
-    <Content Include="Views\Penalties\Edit.cshtml" />
-    <Content Include="Views\Penalties\Index.cshtml" />
     <Content Include="Views\Cars\CreateCar.cshtml" />
     <Content Include="Views\Cars\Index.cshtml" />
     <Content Include="Views\Payments\CreatePayment.cshtml" />
