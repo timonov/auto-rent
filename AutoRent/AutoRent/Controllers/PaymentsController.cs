@@ -20,7 +20,7 @@ namespace AutoRent.Controllers
 
         public ActionResult Index()
         {
-            var payments = db.Payments.Include(p => p.Penalty).Include(p => p.Rent);
+            var payments = db.Payments.Include(p => p.Rent);
             return View(payments.ToList());
         }
 

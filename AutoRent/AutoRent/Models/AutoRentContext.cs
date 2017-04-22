@@ -12,7 +12,6 @@ namespace AutoRent.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerQuery> CustomerFavours { get; set; }
         public DbSet<RentDeal> Rents { get; set; }
-        public DbSet<Penalty> Penalties { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
         public AutoRentContext() : base("AutoRentContext") {}

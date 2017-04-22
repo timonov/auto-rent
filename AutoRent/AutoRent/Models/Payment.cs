@@ -14,10 +14,6 @@ namespace AutoRent.Models
         [ForeignKey("Rent")]
         public int RentID { get; set; }
 
-
-        [ForeignKey("Penalty")]
-        public int? PenaltyID { get; set; }
-
         [Display(Name="Payment Amount")]
         [DataType(DataType.Currency)]
         [Required]
@@ -25,8 +21,5 @@ namespace AutoRent.Models
 
         [ForeignKey("RentID")]
         public virtual RentDeal Rent { get; set; }
-
-        [ForeignKey("PenaltyID")]
-        public virtual Penalty Penalty { get; set; }
     }
 }
