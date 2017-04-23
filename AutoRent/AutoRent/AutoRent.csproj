@@ -161,6 +161,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="AutoRentContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutoRentContext.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CarsController.cs" />
     <Compile Include="Controllers\CustomerQueriesController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
@@ -169,6 +174,10 @@
     <Compile Include="Controllers\RentDealsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704231711072_add-Migration Configuration.cs" />
+    <Compile Include="Migrations\201704231711072_add-Migration Configuration.Designer.cs">
+      <DependentUpon>201704231711072_add-Migration Configuration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AutoRentContext.cs" />
@@ -193,6 +202,10 @@
     <Content Include="home.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="AutoRentContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AutoRentContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -244,6 +257,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704231711072_add-Migration Configuration.resx">
+      <DependentUpon>201704231711072_add-Migration Configuration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
