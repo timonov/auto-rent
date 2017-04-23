@@ -39,20 +39,20 @@
 
             var car = new List<Car>
         {
-            new Car { brand = "Audi A3 Sedan", totalValue = 1200000, rentPrice = 3000, isTaken = true},
-            new Car { brand = "Audi A4", totalValue = 1200000, rentPrice = 3000, isTaken = true},
-            new Car { brand = "Audi Q6", totalValue = 1200000, rentPrice = 3000, isTaken = true},
+            new Car { brand = "Audi A3 Sedan", totalValue = 1200000, rentPrice = 3000, isTaken = false},
+            new Car { brand = "Audi A4", totalValue = 1200000, rentPrice = 3000, isTaken = false},
             new Car { brand = "Audi Q6", totalValue = 1200000, rentPrice = 3000, isTaken = false},
-            new Car { brand = "Citroen C4", totalValue = 1200000, rentPrice = 2000, isTaken = true},
+            new Car { brand = "Audi Q6", totalValue = 1200000, rentPrice = 3000, isTaken = false},
+            new Car { brand = "Citroen C4", totalValue = 1200000, rentPrice = 2000, isTaken = false},
             new Car { brand = "Ford Fiesta", totalValue = 1200000, rentPrice = 1500, isTaken = false},
-            new Car { brand = "Ford Focus", totalValue = 1200000, rentPrice = 1770, isTaken = true},
-            new Car { brand = "Ford Focus", totalValue = 1200000, rentPrice = 2800, isTaken = true},
+            new Car { brand = "Ford Focus", totalValue = 1200000, rentPrice = 1770, isTaken = false},
+            new Car { brand = "Ford Focus", totalValue = 1200000, rentPrice = 2800, isTaken = false},
             new Car { brand = "Ford Kuga", totalValue = 1200000, rentPrice = 3330, isTaken = false},
             new Car { brand = "Kia Cee'd", totalValue = 1200000, rentPrice = 3500, isTaken = false},
             new Car { brand = "Kia Sportage", totalValue = 1200000, rentPrice = 4500, isTaken = false},
             new Car { brand = "Kia Spotrage", totalValue = 1200000, rentPrice = 4500, isTaken = false},
-            new Car { brand = "Kia Ruo", totalValue = 1200000, rentPrice = 1400, isTaken = true},
-            new Car { brand = "Mazda 3", totalValue = 1200000, rentPrice = 2600, isTaken = true},
+            new Car { brand = "Kia Ruo", totalValue = 1200000, rentPrice = 1400, isTaken = false},
+            new Car { brand = "Mazda 3", totalValue = 1200000, rentPrice = 2600, isTaken = false},
             new Car { brand = "Mazda 6", totalValue = 1200000, rentPrice = 2700, isTaken = false},
             new Car { brand = "Mazda 6", totalValue = 1200000, rentPrice = 2740, isTaken = false},
             new Car { brand = "Suzuki SX4", totalValue = 1200000, rentPrice = 2000, isTaken = false},
@@ -67,5 +67,5 @@
             car.ForEach(s => context.Cars.Add(s));
             context.SaveChanges();
         }
-    } // class Configuration
-} //namespace
+    }
+}

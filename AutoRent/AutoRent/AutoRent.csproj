@@ -170,9 +170,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704231551231_add-Migration Configuration.cs" />
-    <Compile Include="Migrations\201704231551231_add-Migration Configuration.Designer.cs">
-      <DependentUpon>201704231551231_add-Migration Configuration.cs</DependentUpon>
+    <Compile Include="Migrations\201704231645345_AutoRentDataModel.cs" />
+    <Compile Include="Migrations\201704231645345_AutoRentDataModel.Designer.cs">
+      <DependentUpon>201704231645345_AutoRentDataModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AutoRentContext.cs" />
@@ -250,8 +250,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704231551231_add-Migration Configuration.resx">
-      <DependentUpon>201704231551231_add-Migration Configuration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201704231645345_AutoRentDataModel.resx">
+      <DependentUpon>201704231645345_AutoRentDataModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
